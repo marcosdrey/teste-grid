@@ -1,0 +1,326 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
+
+/* ------- CONFIGS INICIAIS ------- */
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+:root {
+    --cor001: #DDE392;
+    --cor002: #AFBE8F;
+    --cor003: #7D8570;
+    --cor004: #646F58;
+    --cor005: #504B3A;
+
+    --font_title: 'Libre Baskerville', serif;
+    --font_title_heavier: 'Patua One', serif;
+    --font_text: 'IBM Plex Sans', sans-serif;
+
+}
+
+html, body {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--cor001);
+}
+
+/* ------- CABEÇALHO ------- */
+
+header {
+    background-color: var(--cor004);
+    text-align: center;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.279);
+    color: white;
+}
+
+header > h1 {
+    font-family: var(--font_title);
+    font-weight: bolder;
+    font-size: 3em;
+    padding: 10px 0px;
+}
+
+header > h2 {
+    font-family: var(--font_title);
+    font-weight: lighter;
+    font-size: 1.4em;
+    padding-bottom: 10px;
+}
+
+/* ------- CONTEÚDO PRINCIPAL ------- */
+
+main {
+    font-family: var(--font_text);
+}
+
+/* PRIMEIRO ARTIGO */
+
+.first {
+    grid-area: first;
+}
+
+.second {
+    grid-area: second;
+}
+
+.third {
+    grid-area: third;
+}
+
+.first::before {
+    background-image: url(fotosection1.jpg);
+}
+
+.second::before {
+    background-image: url(fotosection2.jpg);
+}
+
+.third::before {
+    background-image: url(fotosection3.jpg);
+}
+
+#pictures-artic {
+    height: 800px;
+    max-width: 1000px;
+    margin: 50px auto 0px auto;
+    display: grid;
+    grid-template-columns: minmax(100px, 500px) minmax(100px, 500px);
+    grid-template-rows: 350px 350px;
+    gap: 15px;
+
+    grid-template-areas:
+    "first second" 
+    "first third";
+}
+
+.picture {
+    border: 1px solid black;
+    background-size: cover;
+    display: flex;
+    align-items: flex-end;
+    color: white;
+    cursor: pointer;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.picture::before {
+    content: "";
+    position: absolute; /* para ficar atrás do texto */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    z-index: 1;
+    transition: transform 0.5s;
+}
+
+.picture:hover::before {
+    transform: scale(1.2);
+}
+
+.picture_text {
+    padding: 5px 15px 10px 15px;
+    text-align: justify;
+    background-color: rgba(0, 0, 0, 0.196);
+    text-shadow: 1px 1px 0px black;
+    z-index: 2;
+}
+
+.picture_text > h3 {
+    font-family: var(--font_title_heavier);
+    font-size: 1.7em;
+    text-transform: uppercase;
+    padding-left: 5px;
+}
+
+/* ------- SEGUNDO ARTIGO ------- */
+
+#area2 {
+    background-color: var(--cor005);
+    height: 800px;
+}
+
+#infos-area {
+    margin: 50px auto 0px auto;
+    max-width: 1500px;
+    display: grid;
+    grid-template-columns: minmax(200px, 1000px) minmax(80px, 400px);
+    grid-template-rows: 700px;
+    grid-template-areas: 
+    "info aside";
+    gap: 10px;
+}
+
+#infos-artic {
+    grid-area: info;
+    background-color: var(--cor004);
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: minmax(100px, 700px);
+    grid-template-rows: 190px 190px 190px;
+    margin: auto;
+    padding: 30px;
+}
+
+.itens-infos-artic {
+    background-color: white;
+    text-align: justify;
+    border-radius: 15px;
+    padding: 15px;
+    margin: auto;
+}
+
+#infos-aside {
+    grid-area: aside;
+    display: flex;
+    align-items: center;
+    margin-right: 30px;
+}
+
+#infos-aside > p {
+    background-color: white;
+    font-size: 1.1em;
+    padding: 10px;
+    text-align: justify;
+    border: 10px solid var(--cor004);
+    
+}
+
+/* ------- RODAPÉ ------- */
+
+footer {
+    background-color: var(--cor003);
+    font-family: var(--font_text);
+    text-align: center;
+    padding: 5px;
+}
+
+footer > p > a {
+    color: white;
+    text-decoration: none;
+}
+
+footer > p > a:hover {
+    color: var(--cor001);
+    text-decoration: underline;
+}
+
+
+
+@media screen and (max-width: 500px) {
+
+    header > h1 {
+        font-size: 2.2em;
+    }
+
+    header > h2 {
+        font-size: 1.1em;
+        text-align: justify;
+        padding: 15px;
+        padding-top: 0px;
+    }
+
+    #pictures-artic {
+        height: 1000px;
+        grid-template-rows: 300px 300px 300px;
+        grid-template-areas: 
+        "first first"
+        "second second"
+        "third third";
+        gap: 5px;
+        margin: 50px 5px 0px 5px;
+    }
+
+    .first::before {
+        background-position: center;
+    }
+
+    .picture_text > h3 {
+        font-size: 1.2em;
+    }
+
+    .picture_text > p {
+        font-size: 0.9em;
+    }
+}
+
+@media screen and (max-width: 1170px) {
+    #area2 {
+        height: 1100px;
+    }
+    #infos-area {
+        grid-template-columns: auto;
+        grid-template-rows: 700px 300px;
+        grid-template-areas: 
+        "info"
+        "aside";
+        margin: auto;
+        gap: 0px;
+    }
+
+    #infos-aside {
+        margin: auto;
+        max-width: 700px;
+    }
+}
+
+@media screen and (max-width: 760px) {
+    #area2 {
+        height: 1500px;
+    }
+
+    #infos-area {
+        grid-template-columns: auto;
+        grid-template-rows: 900px 500px;
+        grid-template-areas: 
+        "info"
+        "aside";
+        margin: 0px 10px;
+        gap: 0px;
+    }
+
+    #infos-artic {
+        padding: 10px;
+        grid-template-rows: 250px 250px 250px;
+    }
+
+    #infos-aside {
+        margin: 0px 10px;
+        max-width: 700px;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    #area2 {
+        height: 2200px;
+    }
+
+    #infos-area {
+        grid-template-rows: 1480px 670px;
+        margin: 10px 10px;
+        gap: 0px;
+    }
+
+    #infos-artic {
+        padding: 10px;
+        grid-template-rows: 480px 480px 480px;
+        font-size: 1em;
+    }
+
+    #infos-aside {
+        margin: 0px 10px;
+    }
+    #infos-aside > p {
+        font-size: 1em;
+    }
+}
